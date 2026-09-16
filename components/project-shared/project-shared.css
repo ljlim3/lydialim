@@ -8,6 +8,7 @@ article {
 }
 
 .project-section {
+  width: 100%;
   max-width: 760px;
   margin-top: 3rem;
 
