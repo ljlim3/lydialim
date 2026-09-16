@@ -1,4 +1,5 @@
 import { fetchHtmlContent, getStylesheet } from '../../utils/utils.js';
+import { appRouter } from '../../router.js';
 import '../pagination-button/pagination-button.js';
 import '../nav-dropdown/nav-dropdown.js';
 import '../project-theater-app/project-theater-app.js';
@@ -46,7 +47,7 @@ class ProjectComponent extends HTMLElement {
   }
 
   async connectedCallback() {
-    const routeUrl = new URL(window.location.href);
+    // const routeUrl = new URL(window.location.href);
 
     const template = await this.loadTemplate();
     if (template) this.shadowRoot.replaceChildren(template.content.cloneNode(true));
@@ -55,7 +56,7 @@ class ProjectComponent extends HTMLElement {
 
     this.paginations = this.shadowRoot.querySelectorAll('pagination-button-component');
 
-    this.setSelectedProject(routeUrl);
+    this.setSelectedProject();
 
     this.populateNavItems();
     this.setPaginationBtns();
@@ -98,17 +99,17 @@ class ProjectComponent extends HTMLElement {
     nav.dropdownItemsData = [
       { 
         label: 'Movie Theater App',
-        link: '/project?project=movie-theater-app',
+        link: '#/project?project=movie-theater-app',
         key: 'movie-theater-app'
       }, 
       { 
         label: 'EMBRACE',
-        link: '/project?project=embrace',
+        link: '#/project?project=embrace',
         key: 'embrace' 
       },
       {
         label: 'Restaurant App',
-        link: '/project?project=restaurant-app',
+        link: '#/project?project=restaurant-app',
         key: 'restaurant-app'
       }
     ];
@@ -116,8 +117,8 @@ class ProjectComponent extends HTMLElement {
     nav.selected = this.selectedProject;
   }
 
-  setSelectedProject(routeUrl) {
-    const requestedProject = routeUrl.searchParams.get('project');
+  setSelectedProject() {
+    const requestedProject = appRouter.projectId();
     this.selectedProject = this.projectMap[requestedProject] ? requestedProject : 'movie-theater-app';
     this.renderProject();
   }
@@ -211,7 +212,7 @@ class ProjectComponent extends HTMLElement {
   }
 
   routeChanged(url) {
-    const project = url.searchParams.get('project');
+    const project = appRouter.projectId();
 
     if (!this.projectMap[project] || project === this.selectedProject) return;
 

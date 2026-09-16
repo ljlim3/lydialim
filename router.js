@@ -1,7 +1,13 @@
 class Router {
+  get projectId() {
+    return this._projectId;
+  }
+
   constructor(routes, outlet) {
     this.routes = routes;
     this.outlet = outlet;
+
+    this._projectId = null;
 
     this.init();
   }
@@ -18,7 +24,7 @@ class Router {
       ) {
         e.preventDefault(); // prevent the browser from doing a hard refresh and trying to fetch a new HTML file from the server
         const url = new URL(link.href);
-        this.navigate(url.pathname + url.search + url.hash);
+        this.navigate(url.hash);
       }
     });
 
@@ -31,14 +37,14 @@ class Router {
 
   // update the address bar without reloading
   navigate(path) {
+    const currentHashRoute = window.location.hash + window.location.search;
     // prevent unnecessary page re-render by verifying if the URL you're trying to navigate to is different from the page you're already on
-    if (window.location.pathname + window.location.search + window.location.hash !== path) {
+    if (currentHashRoute !== path) {
       const nextUrl = new URL(path, window.location.origin);
-      const sameRoute = nextUrl.pathname === window.location.pathname;
+      const sameRoute = nextUrl.hash === window.location.hash;
 
       history.pushState({}, '', path); // push a new history entry onto the browser's stack and update the text in the address bar without network requests or refreshes
  
-      console.log('inside router')
       if (sameRoute && this.outlet.firstElementChild?.routeChanged) {
         this.outlet.firstElementChild.routeChanged(nextUrl);
         return;
@@ -49,10 +55,8 @@ class Router {
   }
 
   resolveRoute() {
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.hash.slice(1) || window.location.pathname;
     const route = this.routes.find(r => this.matchPath(r.path, currentPath)) || this.routes.find(r => r.path === '*');
-
-    console.log('route', route);
 
     if (route) {
       const params = this.getParams(route.path, currentPath);
@@ -64,10 +68,24 @@ class Router {
     }
   }
 
+  getCleanParts(pathString) {
+    return pathString
+      .split('?')[0]
+      .replace(/^#/, '')      // 1. Remove a leading '#' if it exists
+      .replace(/^\/+|\/+$/g, '') // 2. Trim slashes from the front and back ("//project/" -> "project")
+      .split('/')             // 3. Break into clean array pieces
+      .filter(part => part !== ''); // 4. Safeguard: Drop empty elements
+  }
+
   // break up URL strings by their slashes to deal with dynamic variables
   matchPath(routePath, currentPath) {
-    const routeParts = routePath.split('/');
-    const currentParts = currentPath.split('/');
+    const routeParts = this.getCleanParts(routePath);
+    const currentParts = this.getCleanParts(currentPath);
+
+    const queryString = currentPath.includes('?') ? currentPath.split('?')[1] : window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    this._projectId = urlParams.get('project');
 
     if (routeParts.length !== currentParts.length) return false;
 
@@ -92,5 +110,6 @@ class Router {
 export const appRouter = {
   instance: null,
   init(routes, outlet) { this.instance = new Router(routes, outlet); },
-  go(path) { if (this.instance) this.instance.navigate(path); }
+  go(path) { if (this.instance) this.instance.navigate(path); },
+  projectId() { if (this.instance) return this.instance.projectId }
 }
