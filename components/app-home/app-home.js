@@ -84,19 +84,19 @@ class AppHomeComponent extends HTMLElement {
 
     this.carouselData = [
       { 
-        src: '../../static/theater-app-carousel-cover.png',
+        src: 'static/theater-app-carousel-cover.png',
         label: 'Movie Theater App',
         link: '#/project?project=movie-theater-app',
         key: 'movie-theater-app' 
       },
       { 
-        src: '../../static/emb-parent-dashboard-carousel-cover.png',
+        src: 'static/emb-parent-dashboard-carousel-cover.png',
         label: 'EMBRACE',
         link: '#/project?project=embrace',
         key: 'embrace' 
       },
       { 
-        src: '../../static/restaurant-app.png',
+        src: 'static/restaurant-app.png',
         label: 'Restaurant App',
         link: '#/project?project=restaurant-app',
         key: 'restaurant-app' 
