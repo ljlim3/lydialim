@@ -253,7 +253,7 @@ li:nth-child(2)::before {
 
 .introduction-content {
   position: absolute;
-  top: 5rem;
+  top: 2rem;
   left: 50%;
   transform: translate(-50%);
   width: 60vw;
@@ -272,7 +272,18 @@ li:nth-child(2)::before {
     width: 100%;
     height: 8px;
     background-color: #004830;
+    margin-top: 0.3rem;
   }
+}
+
+.train-sign {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
 }
 
 
