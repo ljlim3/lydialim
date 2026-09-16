@@ -1,0 +1,557 @@
+a:-webkit-any-link {
+  color: var(--dark-theme-text);
+  text-decoration: none;
+}
+
+
+.station-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1440px;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+}
+.train-station-scene-wrapper {
+  position: relative;
+  width: 100%;
+  height: 75vh;
+}
+.train-station-scene-wrapper .background {
+  width: 100%;
+  height: 100%;
+  /* max-width: 1512px; */
+  opacity: 0.5;
+  object-fit: cover;
+}
+
+:host([data-page="last"]) {
+  .train-station-scene-wrapper {
+    > .background {
+      opacity: 0.3;
+    }
+  }
+}
+
+/* train */
+.train-station-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* train station signage */
+.train-station-signage {
+  position: absolute;
+  right: 3rem;
+  bottom: 2.2rem;
+  display: flex;
+  width: 300px;
+  height: 380px;
+}
+
+.signage-board-outer {
+  position: absolute;
+  top: 1rem;
+  left: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 306px;
+  /* width: 269px; */
+  height: 218px;
+  border: solid #000000 1.5px;
+  background-color: var(--dark-theme-wood);
+}
+.signage-board-outer::before,
+.signage-board-outer::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -1.1rem;
+  width: 22px;
+  height: 380px;
+  border: solid #000000 1.5px;
+  background-color: var(--dark-theme-wood);
+  z-index: 1;
+  border-radius: 10px;
+}
+.signage-board-outer::before {
+  left: -0.7rem;
+}
+.signage-board-outer::after {
+  right: -0.7rem;
+}
+.signage-board-inner {
+  position: relative;
+  width: 272px;
+  /* width: 234px; */
+  height: 185px;
+  background-color: var(--dark-theme-background);
+  border-radius: 10px;
+}
+/* .line-one,
+.line-two {
+  color: var(--dark-theme-text);
+}
+.line-one {
+  font-size: 1.5rem;
+  margin: 1rem 1.5rem 1.5rem 1rem;
+}
+.line-two {
+  font-size: 1.9rem;
+  margin: 0rem 1.5rem 0.5rem 1rem;
+} */
+.stripe,
+.stripe-bottom {
+  width: 100%;
+  /* margin: 0.3rem 0; */
+  position: absolute;
+}
+.stripe {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 0.4rem;
+  height: 14px;
+  height: 30px;
+  background-color: #004830;
+  bottom: 1rem;
+
+  i {
+    font-size: 1.3rem;
+  }
+}
+.stripe-bottom {
+  height: 8px;
+  background-color: #007848;
+  bottom: 0.6rem;
+}
+.left-stop, .right-stop {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.left-stop {
+  justify-self: start;
+  margin-left: 0.3rem;
+}
+.right-stop {
+  justify-self: end;
+  margin-right: 0.3rem;
+}
+
+
+/* railway */
+.railway-wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  overflow-x: clip;
+  z-index: 1;
+}
+.scale-down {
+  bottom: -26px;
+  transform: scaleY(0.5);
+}
+.scale-down .railway-wood-wrapper {
+  gap: 5rem;
+}
+.scale-down .railway-wood {
+  width: 28px;
+}
+.railway {
+  width: 100%;
+  height: 32px;
+  border: solid #000000 2px;
+  /* border-right: none;
+  border-left: none; */
+  background-color: #403333;
+}
+/* .scale-down-railway {
+  height: 15px;
+} */
+
+.railway-wood-wrapper {
+  position: absolute;
+  margin-left: 3rem;
+  margin-top: -0.5rem;
+  display: flex;
+  gap: 10rem;
+  max-width: 1512px;
+}
+.railway-wood {
+  width: 41px;
+  height: 24px;
+  border-radius: 5px;
+  background-color: var(--dark-theme-wood);
+  border: 2px solid #000;
+}
+/* .scale-down-railway-wood-wrapper {
+  margin-left: 1rem;
+  gap: 5rem;
+}
+.scale-down-railway-wood {
+  width: 20px;
+  height: 13px;
+} */
+
+
+/* navigation bar */
+.nav-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 75vh);
+  /* width: 100%;
+  transform: translateY(30%); */
+}
+.train-map-wrapper {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  column-gap: 142px;
+  padding: 0;
+}
+.routing-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 76px;
+}
+li:not(:first-of-type)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 54px;
+  width: 178px;
+  height: 16px;
+  background-color: var(--dark-theme-caramel);
+  transform: translateY(23px);
+}
+li:nth-child(2)::before {
+  right: 65px;
+}
+.nav-link-label {
+  margin-top: 0.5rem;
+}
+.nav-link-label:hover {
+  cursor: pointer;
+}
+.selected a {
+  color: var(--dark-theme-caramel);
+  font-weight: 800;
+}
+
+.scroll-direction-instruction {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  color: #959595;
+  font-size: 14px;
+}
+/* .connector {
+  align-self: center;
+  width: 142px;
+  height: 16px;
+  background-color: var(--dark-theme-wood);
+  margin-right: -0.2rem;
+  margin-left: -0.2rem;
+}
+.nav-link-wrapper {
+  display: flex;
+  justify-content: center;
+  column-gap: 142px;
+  list-style-type: none;
+  padding-inline-start: 16px;
+} */
+
+/* media queries */
+/*  <= 1180px */
+@media (997px <= width) {
+  .train-station-signage {
+    width: 300px;
+    height: 335px;
+  }
+  .signage-board-outer::before,
+  .signage-board-outer::after {
+    height: 335px;
+    top: -0.8rem;
+  }
+  .elongate-bars.signage-board-outer::before,
+  .elongate-bars.signage-board-outer::after {
+    height: 364px;
+  }
+}
+@media (768px <= width <= 996px) {
+  .train-station-signage {
+    width: 261px;
+    height: 260px;
+  }
+  .signage-board-outer {
+    /* width: 248px; */
+    width: 259px;
+    height: 188px;
+  }
+  .signage-board-outer::before,
+  .signage-board-outer::after {
+    height: 260px;
+    top: -0.5rem;
+    width: 18px;
+  }
+  .elongate-bars.signage-board-outer::before,
+  .elongate-bars.signage-board-outer::after {
+    height: 285px;
+  }
+  .signage-board-outer::before {
+    left: -0.5rem;
+  }
+  .signage-board-outer::after {
+    right: -0.5rem;
+  }
+  .signage-board-inner {
+    /* width: 214px; */
+    /* width: 211px; */
+    width: 222px;
+    height: 165px;
+  }
+  .scale-down {
+    bottom: -21px;
+  }
+  /* .line-one {
+    font-size: 1.3rem;
+    margin-top: 0.6rem;
+  }
+  .line-two {
+    font-size: 1.7rem;
+  } */
+
+  .railway {
+    height: 24px;
+  }
+  .railway-wood-wrapper {
+    gap: 6rem;
+  }
+  .railway-wood {
+    width: 28px;
+    height: 19px;
+  }
+}
+@media (width >= 768px) {
+  .stand {
+    left: 3rem;
+  }
+}
+/* @media (width >= 768px) { */
+.extra {
+  display: none;
+}
+.extra.visible {
+  display: flex;
+  gap: 5rem;
+}
+/* } */
+@media (width < 767px) {
+  .train-station-signage {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+  }
+  .signage-board-outer::before {
+    left: auto;
+    top: -1.7rem;
+    height: 10px;
+    width: 320px;
+    /* width: 359px; */
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .signage-board-outer::after {
+    content: none;
+  }
+  .signage-board-outer {
+    /* width: 281px;
+    height: 157px; */
+    width: 260px;
+    height: 130px;
+    top: 1.6rem;
+  }
+  .signage-board-inner {
+    /* width: 263px;
+    height: 139px; */
+    width: 250px;
+    height: 120px;
+  }
+  .sign-holder::before,
+  .sign-holder::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 14px;
+    background-color: var(--dark-theme-wood);
+    border: solid #000 1px;
+    top: 0.7rem;
+  }
+  .sign-holder::before {
+    left: 5rem;
+  }
+  .sign-holder::after {
+    right: 5rem;
+  }
+  .stripe {
+    font-size: 0.9rem;
+    bottom: 0.5rem;
+  }
+  /* .line-one {
+    font-size: 1.1rem;
+    margin: 0.7rem 1.5rem 1rem 1rem;
+  }
+  .line-two {
+    font-size: 1.4rem;
+  }
+  .strip-top {
+    height: 12px;
+  }
+  .strip-bottom {
+    height: 6px;
+  } */
+
+  /* railway */
+  .railway {
+    height: 20px;
+  }
+  .railway-wood-wrapper {
+    margin-left: 1.5rem;
+    gap: 5rem;
+  }
+  .railway-wood {
+    width: 29px;
+    height: 13px;
+  }
+  .scale-down {
+    bottom: -18px;
+  }
+  .scale-down .railway-wood-wrapper,
+  .extra.visible {
+    gap: 2.5rem;
+  }
+  .scale-down .railway-wood {
+    width: 24px;
+  }
+}
+
+
+
+
+.test-modern-signage {
+  position: absolute;
+  bottom: 9rem;
+  right: 1.5rem;
+  border: 9px solid var(--dark-theme-wood);
+  width: 210px;
+  height: 354px;
+  border-radius: 22px;
+}
+.modern-signage-inner {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  border: 9px solid #000;
+  bottom: 10rem;
+  right: 2.35rem;
+  width: 183px;
+  height: 322px;
+  border-radius: 20px;
+  background-color: #a0acc9;
+  background:linear-gradient(135deg, #a0acc9 0%, #e28743 100%);
+  background:linear-gradient(135deg, #a0acc9 0%, #5f8a3c 100%);
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: -1.5rem;
+    width: 23px;
+    height: 20px;
+    background-color: #000;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: block;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: -9rem;
+    width: 23px;
+    height: 121px;
+    background-color: #000;
+    border: 9px solid var(--dark-theme-wood);
+    border-top: none;
+    border-bottom: none;
+  }
+
+  .text-top {
+    font-size: 1.3rem;
+    margin-top: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #000;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 6rem;
+      left: 50%;
+      transform: translate(-50%);
+      width: 20%;
+      height: 2px;
+      background-color: #bebebe;
+    }
+  }
+  .text-bottom {
+    font-size: 1.6rem;
+    font-weight: 500;
+    /* Step 1: Define the gradient background */
+  background: linear-gradient(181deg, #a0acc9 0%, #1e293b 70%);
+  
+  /* Step 2: Clip the background to the text boundary */
+  -webkit-background-clip: text;
+  background-clip: text;
+  
+  /* Step 3: Make the original text color transparent so the gradient shows through */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  
+  /* Optional: Ensures letters don't clip at the edges in some browsers */
+  display: inline-block; 
+  }
+}
+.next-stop {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+
+  i {
+    font-size: 1.8rem;
+    color: var(--dark-theme-background);
+  }
+}
+.next-stop-label {
+  position: relative;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--dark-theme-background);
+  bottom: 0.4rem;
+}

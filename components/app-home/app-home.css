@@ -1,0 +1,387 @@
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+.outer-wrapper {
+  overflow-x: hidden;
+  scrollbar-width: none;
+  /* max-width: 1440px; */
+}
+.inner-wrapper {
+  display: flex;
+  width: 300vw;
+  max-width: calc(1440px * 3);
+  height: 100vh;
+}
+
+station-template {
+  /* scroll-snap-align: start; */
+  width: 100vw;
+  height: 100vh;
+}
+
+ /* train */
+.train {
+  position: absolute;
+  bottom: 1.5rem;
+  margin-right: 18rem;
+  z-index: 2;
+  max-width: 877px;
+  max-height: 417px;
+
+  /* animation-timeline: scroll(); */
+  /* animation-iteration-count: 2; */
+/* 
+  animation: moveForward 2.01ms ease-in-out infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1ms);
+  animation-fill-mode: both; */
+}
+.train img {
+  width: 90%;
+ 
+  /* animation: offsetDistance linear;
+  animation-timeline: scroll();
+  animation-fill-mode: both;
+  animation-duration: 1ms; */
+
+  /* animation: moveForward 2.01s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-fill-mode: both;  */
+}
+.train-body {
+  /* margin-bottom: 1.5rem; */
+  margin-bottom: 3.6%;
+
+  /* animation: positionCloserToRail 0; */
+  /* animation: moveForward 2.01s; */
+  /* animation: moveForward 2.01s linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1s);
+  animation-fill-mode: both; */
+}
+.train-wheel-wrapper {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.train .train-wheel {
+    /* animation-timeline: scroll(); */
+    /* animation-iteration-count: ; */
+
+  /* animation: rotate 2ms linear infinite;
+  animation-play-state: paused;
+  animation-delay: calc(var(--scroll) * -1ms);
+  animation-fill-mode: both; */
+}
+.train .train-wheel {
+  width: 14%;
+}
+.train-wheel:first-child {
+  margin-left: 4%;
+}
+.train-wheel:last-child {
+  margin-left: 16%;
+}
+@keyframes moveForward {
+  0% {
+    /* transform: translate3d(0, 0, 0); */
+  }
+  48% {
+    /* transform: translate3d(86vw, 0, 0); */
+    width: 30%;
+    /* margin-left: 0.2rem; */
+    /* transform: translateX(calc(100vw - calc(var(--trainWidth) * 1px) + 100%)); */
+  }
+  50% {
+    /* transform: translate3d(76vw, 0, 0); */
+    width: 30%;
+  }
+  98% {
+    /* transform: translate3d(184vw, 0, 0); */
+    width: 30%;
+  }
+  100% {
+    /* transform: translate3d(180vw, 0, 0); */
+    width: 30%;
+  }
+  /* to {
+    transform: translateX(300vh);
+  } */
+}
+
+@keyframes rotate {
+  /* 50% {
+    transform: translate(100vw) rotate(360deg);
+  } */
+  to {
+    transform: rotate(720deg);
+  }
+}
+@keyframes positionCloserToRail {
+  50% {
+    margin-bottom: 0.5rem;
+  }
+}
+
+
+/* train station signage */
+.line-one,
+.line-two {
+  color: var(--dark-theme-text);
+}
+.line-one {
+  /* font-size: 1.5rem; */
+  font-size: 1.3rem;
+  margin: 1rem 1.5rem 1.5rem 1rem;
+}
+.line-two {
+  /* font-size: 1.9rem; */
+  font-size: 1.6rem;
+  margin: 0rem 1.5rem 0.5rem 1rem;
+  text-wrap: wrap;
+}
+.line-two.single {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+carousel-component {
+  position: absolute;
+  /* top: 25%; */
+  bottom: 3px;
+  right: 1rem;
+}
+
+
+
+/* navigation bar */
+.nav-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 75vh);
+  /* width: 100%;
+  transform: translateY(30%); */
+}
+.train-map-wrapper {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  column-gap: 142px;
+  padding: 0;
+}
+.train-stop {
+  position: relative;
+  width: 59px;
+  height: 59px;
+  border-radius: 50%;
+  background-color: var(--dark-theme-wood);
+  z-index: 1;
+}
+.selected .train-stop::before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  pointer-events: none;
+  background-color: var(--dark-theme-green);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.routing-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  width: 76px;
+  cursor: pointer;
+
+  a {
+    margin-top: 0.2rem;
+  }
+}
+li:not(:first-of-type)::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 54px;
+  width: 178px;
+  height: 8px;
+  background-color: var(--dark-theme-wood);
+  transform: translateY(23px);
+  pointer-events: none;
+  background-image: linear-gradient(to right, var(--dark-theme-background) 50%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 33px 20px;
+  background-repeat: repeat-x;
+}
+li:nth-child(2)::before {
+  right: 65px;
+}
+.nav-link-label {
+  margin-top: 0.5rem;
+}
+.nav-link-label:hover {
+  cursor: pointer;
+}
+.selected a {
+  color: var(--dark-theme-caramel);
+  font-weight: 800;
+}
+
+.introduction-content {
+  position: absolute;
+  top: 5rem;
+  left: 50%;
+  transform: translate(-50%);
+  width: 60vw;
+  height: auto;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: var(--dark-theme-background);
+
+  p {
+    color: var(--dark-theme-text);
+    font-size: 14px;
+    line-height: 1.35rem;
+  }
+
+  .stripe {
+    width: 100%;
+    height: 8px;
+    background-color: #004830;
+  }
+}
+
+
+/* media queries */
+@media (768px <= width <= 996px) {
+  .line-one {
+    /* font-size: 1.3rem; */
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+  }
+  .line-two {
+    /* font-size: 1.7rem; */
+    font-size: 1.5rem;
+  }
+  .stripe-top {
+    bottom: 0.8rem;
+  }
+
+  carousel-component {
+    right: 0.5rem;
+    bottom: 120px;
+  }
+
+  /* nav */
+  .train-stop {
+    width: 55px;
+    height: 55px;
+  }
+  .train-stop::before {
+    width: 30px;
+    height: 30px;
+  }
+  .train-map-wrapper {
+    column-gap: 126px;
+  }
+  li:not(:first-of-type)::before {
+    width: 160px;
+  }
+}
+@media (width <= 767px) {
+  /* body {
+    height: 400vw;
+  } */
+  /* train */
+  .train {
+    display: flex;
+    justify-content: center;
+    margin: 0 2rem;
+  }
+  /* .train-body {
+    margin-bottom: 1rem;
+  } */
+  .train-wheel:first-child {
+    margin-left: 13%;
+  }
+
+  /* signage-text */
+  .line-one {
+    font-size: 1.1rem;
+    margin: 0.7rem 1.5rem 1rem 1rem;
+  }
+  .line-two {
+    font-size: 1.4rem;
+  }
+
+  .signage-board-outer {
+    width: 260px;
+    height: 130px;
+  }
+
+  carousel-component {
+    bottom: 99px;
+    left: 50%;
+    transform: translate(-50%);
+    right: auto;
+    &::part(carousel-container) {
+      height: 280px;
+      width: 93vw;
+    }
+    &::part(item) {
+      width: 220px;
+    }
+  }
+  
+  /* nav */
+  .train-stop {
+    width: 40px;
+    height: 40px;
+  }
+  .selected .train-stop::before {
+    width: 22px;
+    height: 22px;
+  }
+  .train-map-wrapper {
+    /* column-gap: 61px; */
+    column-gap: 40px;
+  }
+  li:not(:first-of-type)::before {
+    width: 103px;
+    height: 10px;
+    transform: translateY(17px);
+  }
+  li:nth-child(2)::before {
+    right: 56px;
+  }
+
+  .introduction-content {
+    width: 90vw;
+    margin: 0.5rem;
+    top: 35%;
+  }
+}

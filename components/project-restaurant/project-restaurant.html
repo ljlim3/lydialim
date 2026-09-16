@@ -1,0 +1,191 @@
+<template id="project-restaurant-template">
+  <article>
+    <header>
+      <h1>Case study: Simplifying customer decision-making when ordering at restaurants</h1>
+      <img class="size-px-200" src="../../static/restaurant-app.png">
+    </header>
+
+    <section class="project-section">
+      <p>
+        Do you remember the last time you were at a restaurant that serves unfamiliar cuisines, perusing the menu
+        that is several pages long? Listening to the ambient music, perhaps also having a conversation, you were 
+        reading through each page trying to choose what to order, or at least attempting to narrow down your options.
+        You were reading the ingredients, in the middle of decoding the menu to get a better idea of what the 
+        pictureless menu items are&ndash;when a waiter came by asking if you were ready to order. Still undecided, 
+        you felt the pressure to choose quickly. If this sounds familiar to you, well, you're by no means alone.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="digital-ethnography-heading">
+      <h2 id="digital-ethnography-heading">Digital ethnography</h2>
+      <p>
+        Through secondary research, I found that 79% of Americans (out of over 1000 people surveyed) find 
+        themselves grappling with menu indecisiveness at restaurants ("Decoding Americans' Menu Preferences and 
+        Ordering Habits", 2023). They spend 9 minutes on average reviewing the menu. According to The Journal of 
+        Clinical Psychiatry, "menu anxiety" is especially prevalent among Gen Z and millennials. And the reasons 
+        for the indecision are too many choices, pickiness, and unfamiliar ingredients or confusing descriptions.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="approach-to-indecision-heading">
+      <h3 id="approach-to-indecision-heading">How people approach indecision</h3>
+      <p>
+        Of these individuals, 83% endeavor to avoid the "ordering panic" by taking the time to look through 
+        the menu online whenever possible (and even decide what to order for some) before going to the 
+        restaurant. Others developed a coping mechanism, which is to rule out categories of menu items based 
+        on the headings. Some ask the waiter/waitress for recommendations.
+      </p>
+
+      <p>
+        On further investigation, I was able to read people's personal experiences, thoughts, and feelings on this
+        topic on Reddit. At least 13 Reddit users described the menu-reading and choosing process at restaurants 
+        as "overwhelming", "tricky", "hard", "too much pressure" and "difficult to deal with", and their strategy 
+        is to review the menu online in advance.
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/restaurant-app-quote.png" alt="A Reddit quote about menu indecision">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="choices-and-satisfaction-heading">
+      <h3 id="choices-and-satisfaction-heading">Number of choices and diminishing satisfaction</h3>
+      <p>
+        Interestingly, this phenomenon is also backed up by behavioral and neuroscientific studies. These studies
+        found that too many choices lead to "choice overload" and decision fatigue, and people's satisfaction with 
+        their final decision diminishes when presented beyond a certain quantity of choices. About a dozen options 
+        was found to offer an optimal balance between potential reward and effort invested (Neporent, 2023; Kras, 
+        2022).
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="problem-heading">
+      <h2 id="problem-heading">The problem</h2>
+      <p>
+        From the data I gathered through secondary research, I learned that customers have an unmet need when trying
+        to decide what to order when they are at the restaurant unprepared, without having done the homework of 
+        reviewing the menu beforehand. To aid me in developing empathy as I generate solutions, I created a persona, 
+        Marie, based on the collected data representing the user group I will be solving the problem for.
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/restaurant-app-persona.png" alt="Persona for the restaurant app">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="ideation-heading">
+      <h2 id="ideation-heading">Ideation</h2>
+      <p>
+        To address the problem I decided to create an app that would help Marie's decision-making at restaurants 
+        easier and more efficient. (For the purposes of the case study, I chose a Korean restaurant, Jeong Yuk Jeom). 
+        I thought it would be helpful to create an introductory page that, on entering the app, provides a brief overview 
+        about the restaurant, specifically focused on conveying what types of food the restaurant serves.
+      </p>
+
+      <p>
+        Now the important quesitons were 1) how can we simplify and streamline Marie's decision-making process? 2) how
+        can we turn an unfamiliar experience into a familiar one? I approached them by first answering question 2. 
+        People know what they like and don't like to eat (e.g., vegetables, meat, etc.), so I could present them with 
+        a list of familiar food categories from which they can select their preferences. Then these personalized 
+        selections can be used to filter out the menu items and present them with smaller and digestible options. I 
+        also considered asking what she doesn't want to eat so that those can be excluded from the final recommended 
+        menu options.
+      </p>
+
+      <p>
+        I outlined a user flow to start me off on generating design ideas.
+      </p>
+      <ol>
+        <li>Read an overview about the restaurant focused on what types of food they serve</li>
+        <li>Select menu category(s)</li>
+        <li>Select preferences from broad categories of food types</li>
+        <li>Select what the user doesn't want to eat</li>
+        <li>
+          Based on the above selections, see applicable menu items and ingredients, along with pictures of food 
+          (basically, filtered and smaller menu)
+        </li>
+      </ol>
+    </section>
+
+    <section class="project-section" aria-labelledby="challenge-heading">
+      <h2 id="challenge-heading">Challenge</h2>
+      <p>
+        The most challenging part of solving the problem was coming up with appropriate and sufficiently distinct food 
+        categories for users to choose from. I started out by referencing the five food groups: fruit, vegetables, grains,
+        protein foods, and dairy. Now given the nature of Korean foods, presenting vegetables as an option for the purposes 
+        of filtering out the menu wouldn't be appropriate, as vegetables are the basic ingredients to most Korean foods, 
+        including the ones where the main ingredient is meat or seafood. So instead, I decided to add <i>vegetarian</i> 
+        for customers who would like to avoid meat. And I studied the ingredients of each menu item, identified patterns, 
+        and came up with the rest of the food types that are broad enough and distinct.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="sketching-heading">
+      <h2 id="sketching-heading">Sketching</h2>
+      <p>
+        During the ideation phase through sketching, I realized that asking users what they don't want to eat is redundant 
+        since I can derive that information from the options they did not select on the preferences page. So I decided not
+        to ask this question and thus removed the step from the user flow.
+      </p>
+
+      <div class="image-container">
+        <img class="size-58" src="../../static/restaurant-app-sketches.png" alt="Sketches of the restaurant app">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="usability-testing-heading">
+      <h2 id="usability-testing-heading">Usability testing</h2>
+      <p>
+        I performed a usability test using a medium-fidelity wireframe to evaluate the effectiveness of the user flow, the 
+        information architecture and clarity, and to uncover parts of the interface that cause frustration or confusion. 
+        The usability test helped me discover some areas of improvement. First, on the preferences page, the participant 
+        mentioned they might want to select all the options in case they want to look through all the menu items that are 
+        available. With the wireframed design, the user had to select each of the options to achieve that goal. In addition, 
+        the participant thought it would be helpful to further break down the recommended menu items into sub-categories, 
+        based on the different food types (e.g., soup, rice bowl, etc.).
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/restaurant-app-wireframe.png" alt="Wireframe of the restaurant app">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="refinement-heading">
+      <h2 id="refinement-heading">Refinement</h2>
+      <p>
+        I applied the usability test feedback to my final, high-fidelity prototype. To address the first feedback, I added 
+        a "Select all" option to the bottom of the option list. This addition certainly improves the user experience as it 
+        eliminates the need for users to manually select each and every individual option. In response to the second feeback, 
+        I created distinct tabs on the side, which group the menu items around different food/menu types (i.e., rice bowl/plate,
+        soup, combo). This organizational structure can help Marie make a more informed decision by clearly grouping menu 
+        items based on her selections, while also reducing the number of options per tab.
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/restaurant-app-final.png" alt="Final prototype of the restaurant app">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="moving-forward-heading">
+      <h2 id="moving-forward-heading">Moving Forward</h2>
+      <p>
+        I have yet to explore some questions that arose as I was working through the case study. For instance,
+        what are the drawbakcs of the side tabs in mobile (and what are the alternatives)? Would customer reviews
+        be helpful in my user group's decision-making? How would the food-type-list look like for other cultural 
+        foods? Could we make the app work seamlessly by encouraging user contribution and collaboration? But for 
+        now, I invite you to check out the current state of the app below.
+      </p>
+    </section> 
+
+    <section class="project-section" aria-labelledby="interactive-prototype-heading">
+      <h3 id="interactive-prototype-heading">Interactive Prototype</h3>
+       <iframe 
+        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/proto/UEpV5tipx6zaJwYhEw4hVW/Restaurant?node-id=2141-282&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=21%3A283&embed-host=share"
+        allowfullscreen
+      ></iframe>
+    </section>  
+  </article>
+</template>

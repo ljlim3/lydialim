@@ -1,0 +1,178 @@
+<template id="project-theater-app-template">
+  <article>
+    <header>
+      <h1>Movie Theater App</h1>
+      <img src="../../static/movie-theater-app.png" alt="Movie theater app prototype">
+    </header>
+
+    <section class="project-section first-section" aria-labelledby="background-heading">
+      <h2 id="background-heading">Background</h2>
+      <p>
+        The following movie theater app is a course project executed independently as part of the Human-Centered Design curriculum. 
+        For this project, I addressed a provided persona's challenges with group movie ticket booking. By focusing on the persona's 
+        pain point&ndash;specifically the friction of coordinating seat selection for a group&ndash;I developed a solution that 
+        streamlines the process for social moviegoers. 
+      </p>
+
+      <p>
+        The project objective was to employ radical prioritization, scoping the deliverable for the MVP. Our goal was to validate the 
+        core functionality without the distraction of "nice-to-have" features.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="our-user-heading">
+      <h2 id="our-user-heading">Our user</h2>
+      <p>
+        Jeanne-Marie works full time as a marketing manager. And after what feels like a long week, she likes to decompress by 
+        dining out with her friends on Friday nights. She and her friends have made Friday nights out a regular tradition, giving
+        them a much-needed highlight to look forward to. As part of their weekly ritual, they also go see a movie together after 
+        dinner. But there is one aspect of their ritual that stresses Jeanne-Marie out. Group booking. It's challenging and 
+        time-consuming to try to find a cinema with seat availability for her and her friends. This is particularly challenging 
+        because they want to sit together. 
+      </p>
+
+      <p>
+        Jeanne-Marie's (or user) goals are as follows:
+      </p>
+      <ul class="bullet-point-list">
+        <li>Select a location nearby</li>
+        <li>Select a movie</li>
+        <li>Select a time to see that movie</li>
+        <li>Select multiple seats in a row</li>
+      </ul>
+    </section>
+
+    <section class="project-section" aria-labelledby="sketching-heading">
+      <h2 id="sketching-heading">Sketching</h2>
+      <p>
+        For each user goal, I ideated 5 screen variations through hand-sketching. I leveraged low-fidelity sketching to 
+        rapidly conduct parallel design exploration.
+      </p>
+
+      <div class="image-container layout-horizontal">
+        <img src="../../static/theater-app-sketches-1.jpg" alt="Sketch of screen 1: Select a location nearby page 1">
+        <img src="../../static/theater-app-sketches-2.jpg" alt="Sketch of screen 1: Select a location nearby page 2">
+      </div>
+
+      <h3 class="mt-5">Screen 1: Select a location nearby</h3>
+      <p>
+        My initial idea was showing a map-centric search interface that provides a spatial visualization of theaters. This would 
+        allow Jeanne-Marie to easily identify the most convenient location for the group. But based on what the user wants to achieve, 
+        the primary utility of the app is not map-dependent. Considering this, my other solution was vertical result list, ordered 
+        based on user-selected filters.
+      </p>
+
+      <p>
+        From a development perspective, maps are resource-intensive and require high implementation effort along with ongoing 
+        maintenance. Since the use case was exclusive to theater locations (and did not require broader geographic discovery), I 
+        determined that the complexity of a map interface was unnecessary and out of scope for the primary user journey. 
+        So I set aside the idea of an interactive map for a future phase.
+      </p>
+
+      <h3>Screen 2: Select a movie</h3>
+      <p>
+        For the movie search screen, I explored diverse layouts, such as a grid, a carousel, and a single-colmn list view. 
+        I decided to go with a high-density grid layout to optimize for scannability.
+      </p>
+
+      <h3>Screen 3: Select a time to see that movie</h3>
+      <p>
+        I sketched several different date and time picker models, including an input field, a dropdown, and buttons, to 
+        identify the most low-friction method for selecting dates and showtimes.
+      </p>
+
+      <p>
+        Because I was designing a mobile app, I chose tabs of dates for optimal touch targets, making the date buttons easier 
+        to tap. 
+      </p>
+
+      <h3>Screen 4: Select multiple seats in a row</h3>
+      <p>
+        Likewise, I also explored different ways to display a persistent booking summary, which I added to ensure the 
+        user's movie, date, and time selections remained visible to reduce memory load.
+      </p>
+
+      <p>
+        I moved forward with the layout with a progress bar to reduce user uncertainty and manage expectations.
+      </p>
+
+      <h3>Filter</h3>
+      <p>
+        To reduce late-stage drop-offs (for example, the user reaches the final step only to find that the seats are no longer 
+        available at a selected theater), I designed the interface to provide a filter from the beginning. Based on the 
+        filter selections, which include how many seats the user wants to book, the app provides a list of theaters that have
+        the specified availability.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="usability-testing-heading">
+      <h2 id="usability-testing-heading">Low-fidelity Paper Prototype & Usability Testing</h2>
+      <p>
+        I created a low-fidelity paper prototype to test and identify critical friction points and mental model gaps.
+        I conducted the usability testing with one user and employed a concurrent think-aloud method to capture 
+        real-time feedback.
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/theater-app-low-fid-prototype.jpg" alt="Low-fidelity paper prototype of the theater app">
+      </div>
+
+      <h3 class="mt-5">Feedback for Screen 1: Select location</h3>
+      <p>
+        During the usability test session, the participant expressed privacy concerns about the app's default persistent 
+        location tracking. So I moved from a default-on setting to an opt-in model. The participant also didn't recognize 
+        what the filter button was for, and they expressed the possibility of overlooking it. To improve discoverability 
+        and engagement with the essential options, I created a separate screen, featured high-priority actions on this 
+        screen and provided a clearly labeled Add Filter functionality for additional filter options.
+      </p>
+
+      <h3>Feedback for Screen 2: Movie search page</h3>
+      <p>
+        On this screen, I uncovered through participant feedback that the underlying logic of the movie layout unclear, 
+        as they couldn't tell how the information was sorted by. I addressed this by using clear headers.
+      </p>
+
+      <h3>Feedback for Screen 3: Date/Time Selection</h3>
+      <p>
+        At this step, the participant expressed concern regarding seat availability. They were unsure if the seats would
+        still be available by the time they reached the seat selection stage. To address this valid and cruicial concern, 
+        I displayed how many seats are available for each available showtime on this screen to enable users to peek at 
+        the availability before reaching the decision point.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="medium-prototype-heading">
+      <h2 id="medium-prototype-heading">Medium Fidelity Prototype</h2>
+      <p>
+        After finalizing the structural layouts, I transitioned to medium-fidelity, grey scale wireframing on Figma to 
+        convey placement, hierarchy, and layout of content. The goal of the wireframe was to solve the core issues, such 
+        as layout and interaction, without the distraction of visual details such as color and typography choices.
+      </p>
+
+      <div class="image-container">
+        <img src="../../static/theater-app-wireframe.png" alt="Medium-fidelity wireframe of the theater app">
+      </div>
+    </section>
+
+    <section class="project-section" aria-labelledby="high-prototype-heading">
+      <h2 id="high-prototype-heading">High-fidelity Prototype</h2>
+      <p>
+        For the color scheme, I chose a dark-mode 'Black Box' asthetic, with the dark background acting as a stage to 
+        highlight the core content through vibrant call-to-actions. I also wanted users to think and feel cinema while 
+        using the app. Using the web accessibility checker plugin, I ensured that the colors passed WCAG AA standards 
+        at minimum to make the information readable and accessible to the broadest possible users.
+      </p>
+    </section>
+
+    <section class="project-section" aria-labelledby="interactive-prototype-heading">
+      <h3 id="interactive-prototype-heading">Interactive Prototype</h3>
+      <iframe 
+        style="border: 1px solid rgba(0, 0, 0, 0.1);"
+        width="800"
+        height="450"
+        src="https://embed.figma.com/proto/LmKOwf6VpyHyKG682Ngwv4/Movie-theater-app?node-id=112-1070&starting-point-node-id=112%3A1070&embed-host=share"
+        allowfullscreen
+      ></iframe>
+    </section>
+  </article>
+</template>

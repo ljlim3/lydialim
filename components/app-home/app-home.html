@@ -1,0 +1,83 @@
+<template id="app-home-template" shadowrootmode="open">
+  <div class="outer-wrapper">
+      <div class="inner-wrapper">          
+        <station-template id="home" data-page="first">
+          <div slot="train" class="train">
+              <img class="train-body" src="static/train-body-3.svg" />
+              <div class="train-wheel-wrapper">
+                <img class="train-wheel" src="static/train-wheel.svg" />
+                <img class="train-wheel" src="static/train-wheel.svg" />
+                <img class="train-wheel" src="static/train-wheel.svg" />
+              </div>
+            </div>
+            
+          <div slot="signage-text">
+            <div class="line-one">Welcome to</div>
+            <div class="line-two">Lydia Lim's Portfolio</div>
+          </div>
+        </station-template>
+        <station-template id="introduction" class="intro" data-page="mid">
+          <div slot="body-content">
+            <div class="introduction-content">
+              <p>
+                I'm a frontend software developer with a deep passion for user experience. At the heart of 
+                crafting solutions, I'm fueled by connecting user needs to seamless, satisfying experiences 
+                that build trust. To this end, I leverage user research and analysis to deeply understand 
+                human behaviors and motivations. Users shouldn't have to grapple with a user interface, 
+                feel excluded from an experience, nor question the security of their data. From initial concept 
+                to final craft, I constantly push boundaries to build solutions that repsect user time, support 
+                emotional well-being and capabilities, and protect privacy to cultivate lasting user trust.
+              </p>
+              <div class="stripe"></div>
+            </div>
+          </div>
+          <div slot="signage-text"> 
+            <div class="line-two single">Introduction</div>
+          </div>
+        </station-template>
+        <station-template sign-pos="left" id="projects" data-page="last">
+          <div slot="signage-text"> 
+            <div class="line-two single">Projects</div>
+          </div>
+          <!-- <div slot="carousel" > -->
+          <carousel-component slot="carousel">
+          </carousel-component>
+          <!-- </div> -->
+        </station-template>
+        <!-- <div class="nav-wrapper">
+          <ul class="train-map-wrapper">
+            <li class="routing-link selected">
+              <div class="train-stop"></div>
+              <a class="link-one">Home</a>
+            </li>
+            <li class="routing-link">
+              <div class="train-stop"></div>
+              <a class="link-two">Introduction</a>
+            </li>
+            <li class="routing-link">
+              <div class="train-stop"></div>
+              <a class="link-three" href="#projects">Projects</a>
+            </li>
+          </ul>
+        </div> -->
+      <!-- </div> -->
+      </div>
+      <div class="nav-wrapper">
+        <ul class="train-map-wrapper">
+          <li class="routing-link selected" data-link-index="0">
+            <div class="train-stop"></div>
+            <a class="link-one">Home</a>
+          </li>
+          <li class="routing-link" data-link-index="1">
+            <div class="train-stop"></div>
+            <a class="link-two">Introduction</a>
+          </li>
+          <li class="routing-link" data-link-index="2">
+            <div class="train-stop"></div>
+            <a class="link-three">Projects</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </template>

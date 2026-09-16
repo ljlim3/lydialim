@@ -1,0 +1,61 @@
+<template id="station-component-template">
+  <div class="station-wrapper">
+    <div class="train-station-scene-wrapper">
+      <img class="background" src="static/forest-animated-reduced.png">
+      <div class="train-station-container">
+      <slot name="train"></slot>
+        
+        <!-- <div class="test-modern-signage"></div>
+        <div class="modern-signage-inner">
+          <div class="text-top">Welcome to</div>
+          <div class="text-bottom">Lydia's</div>
+          <div class="text-bottom">Portfolio</div>
+          <div class="next-stop">
+            <span class="next-stop-label">Introduction</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+        </div> -->
+      <slot name="body-content"></slot>
+
+      <div class="train-station-signage">
+          <div class="sign-holder"></div>
+          <div class="signage-board-outer">
+            <div class="signage-board-inner">
+              <slot name="signage-text"></slot>
+              <div class="stripe">
+                <div class="left-stop"></div>
+                <div class="right-stop"></div>
+              </div>
+              <!-- <div class="stripe-bottom"></div> -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="railway-wrapper">
+          <div class="railway"></div>
+          <div class="railway-wood-wrapper">
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div class="railway-wood"></div>
+            <div id="extra" class="extra">
+              <div class="railway-wood"></div>
+              <div class="railway-wood"></div>
+              <div class="railway-wood"></div>
+              <div class="railway-wood"></div>
+              <div class="railway-wood"></div>
+              <div class="railway-wood"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <slot name="carousel"></slot>
+    </div>
+    <div id="scroll-direction-instruction" class="scroll-direction-instruction"></div>
+  </div>
+</template>
