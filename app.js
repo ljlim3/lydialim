@@ -9,7 +9,7 @@ import './components/project/project.js';
 
 const routes = [
   {
-    path: '/',
+    path: '#/',
     component: 'app-home-component',
   },
   {
