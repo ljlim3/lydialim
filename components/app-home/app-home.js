@@ -3,15 +3,15 @@ import '../station/station.js';
 import '../carousel/carousel.js';
 
 const SECTION_STATES = {
-  home: { home: true, introduction: false, project: false },
-  introduction: { home: false, introduction: true, project: false },
-  project: { home: false, introduction: false, project: true },
+  home: { home: true, introduction: false, projects: false },
+  introduction: { home: false, introduction: true, projects: false },
+  projects: { home: false, introduction: false, projects: true },
 }
 
 const SECTION_LINKS = {
   home: ' ',
   introduction: '#introduction',
-  project: '#project'
+  projects: '#projects'
 }
 
 class AppHomeComponent extends HTMLElement {
@@ -39,7 +39,7 @@ class AppHomeComponent extends HTMLElement {
       },
       {
         left: 'Home',
-        right: 'Project'
+        right: 'Projects'
       },
       {
         left: 'Introduction',
@@ -50,9 +50,6 @@ class AppHomeComponent extends HTMLElement {
 
   // fired when instance of this custom element is added to the DOM
   async connectedCallback() {
-
-    console.log('AppHomeComponent connected')
-
     const template = await this.loadTemplate();
     await this.adoptStylesheets();
 
@@ -76,10 +73,9 @@ class AppHomeComponent extends HTMLElement {
     this.prevPos = 0;
     this.screenResize = false;
     this.appliedLink = { home: true, intro: false, proj: false };
-    this.linkMap = { 0: 'home', 1: 'introduction', 2: 'project'};
+    this.linkMap = { 0: 'home', 1: 'introduction', 2: 'projects'};
     this.stations.forEach((station, index) => {
       station.signStops = this._signStops[index];
-      console.log('station stops', this._signStops[index])
     });
 
     this.carouselData = [
@@ -107,7 +103,7 @@ class AppHomeComponent extends HTMLElement {
     gsap.registerPlugin(ScrollTrigger);
     gsap.registerPlugin(ScrollToPlugin);
 
-    
+
 
     ///////// REFACTOR
     // const hash = window.location.hash;
@@ -126,14 +122,10 @@ class AppHomeComponent extends HTMLElement {
 
     this.setupEventListeners();
     this.scrollAnimation();
-
-    console.log('selectedLink inside connectedCallback', this.selectedLink)
-
     this.handleHash();
 
-    this._resized = false;
-    this._initialRun = true;
-    this.isRefreshing = false;
+    this.start = 0;
+    this.end = 0;
     // this.addCarouselItems(this.carouselData);
 
   }
@@ -159,11 +151,6 @@ class AppHomeComponent extends HTMLElement {
 
     // 3. Normalize to a value between 0.000 and 1.000
     this.progress = (scrollLeft / maxScroll).toFixed(3);
-
-    console.log('progress', this.progress);
-    
-    // 4. Set as a CSS Variable for styling (Safe from GSAP style-stripping!)
-    this.style.setProperty("--horizontal-progress", this.progress);
 
     this.updateRailwayScale();
   }
@@ -281,7 +268,7 @@ class AppHomeComponent extends HTMLElement {
         }
         break;
       case 1:
-        if (!this.appliedLink.introduction) {
+        if (!this.appliedLink.intro) {
           this.navIntroBtn.classList.add('selected');
           this.linkArr[this.selectedLink].classList.remove('selected');
 
@@ -289,11 +276,11 @@ class AppHomeComponent extends HTMLElement {
         }
         break;
       case 2:
-        if (!this.appliedLink.project) {
+        if (!this.appliedLink.proj) {
           this.navProjectBtn.classList.add('selected');
           this.linkArr[this.selectedLink].classList.remove('selected');
 
-          history.replaceState(null, null, '#project');
+          history.replaceState(null, null, '#projects');
         }
         break;
     }
@@ -312,17 +299,67 @@ class AppHomeComponent extends HTMLElement {
           case 'home':
             return 0;
           case 'introduction':
-            const st = this.horizontalTween.scrollTrigger;
-            const sectionDistance = (st.end - st.start) / 2;
-
-            const targetY = st.start + sectionDistance * 1;
-            return targetY;
-          case 'project':
+            const sectionDistance = (this.end - this.start) / 2;
+            const targetY = this.start + sectionDistance * 1;
+            return targetY || window.innerWidth;
+            
+          case 'projects':
             console.log('project')
             return 'max';
         }
       }
-    })
+    });
+
+    // gsap.to(window, {
+    //   // duration: 2,
+    //   duration: 3,
+    //   ease: "power2.inOut",
+    //   overwrite: "auto",
+    //   scrollTo: () => {
+    //     switch (section) {
+    //       case 'home':
+    //         return 0;
+    //       case 'introduction':
+    //         // const targetLeft = el.offsetLeft;
+    //         // const viewportWidth = window.innerWidth;
+    //         // const middleXCoordinate = ((viewportWidth * 2) - targetLeft) / 2;
+    //         // const targetY = targetLeft + middleXCoordinate * 1;
+    //         // // console.log('viewportWidth', viewportWidth);
+    //         // // console.log('targetLEft', targetLeft)
+           
+    //         // // console.log('start', this.start)
+    //         // // console.log('end', this.end)
+    //         // // // console.log('horizontalTween', this.horizontalTween)
+    //         // // // if (!this.horizontalTween) return;
+    //         // // console.log('YES horizontalTween')
+    //         // // // const st = this.horizontalTween.scrollTrigger;
+    //         // // // const sectionDistance = (st.end - st.start) / 2;
+    //         // // const sectionDistance = (this.end - this.start) / 2;
+
+    //         // // // const targetY = st.start + sectionDistance * 1;
+    //         // // const targetY = this.start + sectionDistance * 1;
+    //         // // return targetY;
+    //         // console.log('targetY', targetY)
+    //         // // return targetY;
+    //         // return targetY;
+    //         const secondPage = this.shadowRoot.getElementById('introduction');
+    //         console.log('secondPage', secondPage);
+    //         window.scrollTo({
+    //           top: secondPage.offsetLeft,
+    //           behavior: 'smooth'
+    //         })
+    //         // secondPage.scrollIntoView({ behavior: 'smooth' });
+    //         return;
+            
+    //       case 'projects':
+    //         console.log('project')
+    //         return 'max';
+    //     }
+    //   }
+    // });
+    // const secondPage = document.getElementById('introduction');
+    // secondPage.scrollIntoView({ behavior: 'smooth' });
+   
   }
 
   handleNavHomeBtnClick() {
@@ -346,13 +383,14 @@ class AppHomeComponent extends HTMLElement {
 
   handleNavIntroBtnClick() {
     if (!this.appliedLink.intro) {
+      if (!this.horizontalTween  || this.horizontalTween.scrollTrigger) return;
+
       const st = this.horizontalTween.scrollTrigger;
       const sectionDistance = (st.end - st.start) / 2;
       console.log('st.end', st.end)
       console.log('st.start', st.start)
 
       const targetY = st.start + sectionDistance * 1;
-      console.log(targetY);
 
       gsap.to(window, {
         ease: 'none',
@@ -413,12 +451,10 @@ class AppHomeComponent extends HTMLElement {
       // let scaleDownView = false;
 
       if (this.progress > 0.178) {
-        console.log('scale down railway!!!')
         stationEl.scaleDownRailway = true;
         stationEl.onScaleDownRailway();
         // scaleDownView = false;
       } else if (this.progress <= 0.178) {
-        console.log('scale UP railway!!!')
         stationEl.scaleDownRailway = false;
         stationEl.onScaleDownRailway();
         // scaleDownView = true;
@@ -442,7 +478,7 @@ class AppHomeComponent extends HTMLElement {
       this.appliedLink.intro = false;
       this.appliedLink.proj = true;
 
-      history.replaceState(null, null, '#project');
+      history.replaceState(null, null, '#projects');
     }
   }
 
@@ -479,16 +515,24 @@ class AppHomeComponent extends HTMLElement {
     // listen for user-initiated scroll
     outerWrapperEl.addEventListener('wheel', this.handleWheel);
 
-    // console.log('scroll amount', window.innerWidth)
-
+   
     this.horizontalTween = gsap.to(innerWrapperEl, {
       x: getScrollAmount,
       duration: 3,
       ease: "none",
-      // maxWidth: "1440px"
+      immediateRender: true,
     });
 
- 
+
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh(true); 
+    }
+
+    setTimeout(() => {
+      this.start = this.horizontalTween.scrollTrigger.start;
+      this.end = this.horizontalTween.scrollTrigger.end;
+    }, 50);
+     
     ScrollTrigger.create({
       trigger: outerWrapperEl,
       start: "top top",
@@ -550,7 +594,7 @@ class AppHomeComponent extends HTMLElement {
               const newState = SECTION_STATES[this.linkMap[selectedIndex]];
               Object.assign(this.appliedLink, newState);
 
-              history.replaceState(null, null, '#project');
+              history.replaceState(null, null, '#projects');
             }
           }
         }
@@ -636,7 +680,7 @@ class AppHomeComponent extends HTMLElement {
         end:'+=4000vh',
         scrub: 1,
         //  end: `+=${getScrollAmount() * -1}`,
-        onUpdate: async (self) => {
+        onUpdate: (self) => {
           // gsap.to(trainWheel, {
           //   rotation: 360 * self.progress * 4,
           //   duration: 1,
@@ -856,10 +900,13 @@ class AppHomeComponent extends HTMLElement {
   handleHash() {
     const hash = window.location.hash;
     const linkIndex = hash === SECTION_LINKS['introduction'] ? 1 :
-                      hash === SECTION_LINKS['project'] ? 2 :
+                      hash === SECTION_LINKS['projects'] ? 2 :
                       0;
 
-    this.handleScrollTo(hash.substring(1));
+    this.userInitiatedScroll = false;    
+    this.screenResize = false;
+    
+    this.handleScrollTo(this.linkMap[linkIndex]);
     this.handleNavUpdate(linkIndex);
   }
 
