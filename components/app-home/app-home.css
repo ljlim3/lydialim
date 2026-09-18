@@ -218,6 +218,8 @@ carousel-component {
 
   a {
     margin-top: 0.2rem;
+    text-decoration: none;
+    color: var(--dark-theme-text);
   }
 }
 li:not(:first-of-type)::before {

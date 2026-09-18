@@ -49,6 +49,7 @@ a:-webkit-any-link {
   display: flex;
   width: 300px;
   height: 380px;
+  z-index: 1;
 }
 
 .signage-board-outer {
@@ -355,7 +356,7 @@ li:nth-child(2)::before {
   gap: 5rem;
 }
 /* } */
-@media (width < 767px) {
+@media (width <= 767px) {
   .train-station-signage {
     top: 0;
     left: 0;

@@ -1,7 +1,9 @@
 * {
   box-sizing: border-box;
 }
-
+:host {
+  overflow: hidden;
+}
 button {
   cursor: pointer;
 }
@@ -44,7 +46,7 @@ ul {
   box-shadow: inset 0 0 1.5px 1.5px hsla(0, 0%, 100%, 0.075);
   margin-top: -3.5px;
 }
-.menu-list.closed {
+.nav-dropdown:not(.mobile) .menu-list.closed {
   opacity: 0;
   visibility: hidden;
 }
@@ -105,7 +107,21 @@ ul {
     display: none;
   }
   .menu {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    position: fixed;
+    top: 0;
+    left: 100vw;
+    border-radius: 30px 0 0 30px;
+    background-color: var(--dark-theme-green);
+    overflow: hidden;
+    touch-action: none;
+    width: 85%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: transform 1s ease;
   }
   .menu-btn {
     display: flex;
@@ -130,12 +146,15 @@ ul {
     justify-content: center;
     align-items: center;
     width: 100%;
+    box-shadow: none;
   }
 
   .menu-item {
     text-align: center;
     font-size: 22px;
-    width: 250px;
+    width: 100%;
+    height: 33%;
+    box-shadow: inset 0 0 1.5px 1.5px hsla(0, 0%, 100%, 0.075);
 
     a {
       display: flex;
@@ -146,12 +165,16 @@ ul {
     &:hover {
       &::before {
         left: 0;
+        width: 7px;
+        height: 40%;
       }
     }
 
     &.selected {
       &::before {
         left: 0;
+        width: 7px;
+        height: 40%;
       }
     }
   }
@@ -159,26 +182,15 @@ ul {
   &.open {
     .menu-btn {
       position: fixed;
-      top: 15vh;
-      right: 15vw;
+      top: 1.7rem;
+      right: 0;
+      transform: translateX(-85vw);
       z-index: 2;
     }
 
     .menu {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-      width: 80vw;
-      height: 80vh;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 30px;
-      background-color: var(--dark-theme-green);
-      overflow: hidden;
-      touch-action: none;
+      transform: translateX(-85vw);
+      transition: transform 0.7s ease;
 
       ul {
         width: 100%;
