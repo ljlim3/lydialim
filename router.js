@@ -55,7 +55,15 @@ class Router {
   }
 
   resolveRoute() {
-    const currentPath = window.location.hash.slice(1) || "/";
+    const hash = window.location.hash;
+
+    let currentPath = null;
+    if (hash && !hash.startsWith('#/')) {
+      currentPath = "/";
+    } else {
+      currentPath = hash.slice(1) || "/";
+    }
+    
     const route = this.routes.find(r => this.matchPath(r.path, currentPath)) || this.routes.find(r => r.path === '*');
 
     if (route) {
