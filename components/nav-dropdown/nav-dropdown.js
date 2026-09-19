@@ -25,37 +25,8 @@ class NavDropdownComponent extends HTMLElement {
     super();
 
     this.attachShadow({ mode: 'open' });
-    // shadowRoot.appendChild(template.cloneNode(true));
 
   }
-
-  // async loadTemplate() {
-  //   try {
-  //     const response = await fetch('../nav-dropdown/nav-dropdown.html');
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP Error status: ${response.status}`);
-  //     }
-
-  //     const htmlText = await response.text();
-
-  //     // parse the fetched HTML text into a DOM object
-  //     const parser = new DOMParser();
-  //     const doc = parser.parseFromString(htmlText, 'text/html');
-
-  //     // access the template element from the parsed document
-  //     const template = doc.querySelector('#nav-dropdown-template');
-
-  //     if (template) {
-  //       // clone the content and attach it to the shadow dom
-  //       this.shadowRoot.appendChild(template.content.cloneNode(true));
-  //     } else {
-  //       console.error('Template element not found in the fetched file');
-  //     }
-  //   } catch (error) {
-  //     console.error('Failed to load external template: ', error);
-  //   }
-  // } 
 
   async connectedCallback() {
     this.navDropdown = null;
@@ -166,7 +137,6 @@ class NavDropdownComponent extends HTMLElement {
     this.menuBtn.addEventListener('click', (e) => this.onMenuBtnClick(e));
     this.menuList.addEventListener('click', (e) => this.onMenuListClick(e));
     this.shadowRoot.addEventListener('click', (e) => this.onNavComponentClick(e));
-    // document.addEventListener('click', this.onDocumentClick); // may need to add to the parent component
   }
 
   setupMutationObserver() {
@@ -240,16 +210,7 @@ class NavDropdownComponent extends HTMLElement {
 
   onNavComponentClick(e) {
     if (e.target.closest('.menu-list') || e.target.closest('.menu-btn') || e.target.closest('.menu')) return;
-    // this.menuClosed();
   }
-
-  // may have to implement this in the parent component where this is used
-  // onDocumentClick(e) {
-  //   console.log(e);
-  //   if (e.target.closest('.nav-dropdown-list') || e.target.closest('.nav-dropdown-btn')) return;
-  //   this.navDropdownList.classList.add('closed');
-  //   this.navDropdownBtn.classList.remove('open');
-  // }
 
   disconnectedCallback() {
     this.menuBtn.removeEventListener('click', this.onMenuBtnClick);

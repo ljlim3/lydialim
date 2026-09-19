@@ -115,7 +115,6 @@ class PaginationButton extends HTMLElement {
   }
 
   addButtonLabel() {
-    // const label = this.getAttribute('data-button-label');
     const btnLabelEl = this.shadowRoot.querySelector('.button-label');
 
     if (btnLabelEl) btnLabelEl.textContent = this._label;

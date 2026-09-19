@@ -23,13 +23,11 @@ class CarouselComponent extends HTMLElement {
     const template = await this.loadTemplate();
     await this.adoptStyleSheets();
 
-    // const template = this.shadowRoot.querySelector('template');
     if (template) {
       this.shadowRoot.replaceChildren(template.content.cloneNode(true));
     }
 
     this.carousel = this.shadowRoot.querySelector('.carousel');
-    this.carousel.addEventListener('click', (e) => this.handleItemClick(e));
     this.populateItems(this.#data);
   }
 
@@ -39,8 +37,6 @@ class CarouselComponent extends HTMLElement {
 
       const template = doc.getElementById('carousel-component-template');
       if (template) {
-        // this.shadowRoot.setHTMLUnsafe(doc);
-        // CarouselComponent.#templateCache = template;
         return template;
       } else {
         console.error('Could not find the template element');
@@ -96,34 +92,5 @@ class CarouselComponent extends HTMLElement {
     });
     this.carousel.replaceChildren(fragment);
   }
-
-  handleItemClick(e) {
-    const anchor = e.composedPath().find(el => el?.tagName === 'A');
-    if (anchor) return;
-
-    const listItem = e.target.closest('.item');
-    if (!listItem) return;
-
-    let val;
-
-    if (listItem) {
-      val = parseInt(listItem.dataset.val);
-
-      if (this.#data[val].link) {
-        // window.href = this.#data[val].link;
-        // window.open(this.#data[val].link);
-      }
-    }
-
-    // const event = new CustomEvent('itemClick', {
-    //   detail: { val: this.#data[val].key },
-    //   bubbles: true,
-    //   composed: true
-    // });
-
-    // this.dispatchEvent(event);
-  }
-
-
 }
 customElements.define('carousel-component', CarouselComponent);

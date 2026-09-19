@@ -16,9 +16,7 @@ class ProjectComponent extends HTMLElement {
     super(); // initialize the base class
 
     this.attachShadow({ mode: 'open' }); // mode - about accessing the shadow root of component from the outside
-    // const templateContent = document.querySelector('#project-template').content;
-    // shadowRoot.appendChild(templateContent.cloneNode(true)); // clone and append to shadow root
-
+ 
     this._initialized = false;
     this.selectedProject = null;
     this.projects = [
@@ -47,8 +45,6 @@ class ProjectComponent extends HTMLElement {
   }
 
   async connectedCallback() {
-    // const routeUrl = new URL(window.location.href);
-
     const template = await this.loadTemplate();
     if (template) this.shadowRoot.replaceChildren(template.content.cloneNode(true));
 
@@ -57,12 +53,9 @@ class ProjectComponent extends HTMLElement {
     this.paginations = this.shadowRoot.querySelectorAll('pagination-button-component');
 
     this.setSelectedProject();
-
     this.populateNavItems();
     this.setPaginationBtns();
     this.updatePaginationBtns();
-
-    console.log('INIT after updatePaginationBtns()')
 
     this._initialized = true;
   }
@@ -227,77 +220,3 @@ class ProjectComponent extends HTMLElement {
   }
 }
 customElements.define('project-component', ProjectComponent); // define custom element
-
-
-// console.log(document.styleSheets)
-
-// const navDropdownComponent = document.querySelector('nav-dropdown-component');
-// console.log(navDropdownComponent);
-
-// document.addEventListener('click', onDocumentClick);
-
-// function onDocumentClick(e) {
-//   if (e.target.closest('nav-dropdown-component')) return;
-//   navDropdownComponent.setAttribute('data-close', true);  
-// }
-
-// // nav dropdown
-// const navDropdownData = [
-//   {
-//     label: 'Project 1',
-//     link: ''
-//   },
-//   {
-//     label: 'Project 2',
-//     link: ''
-//   }
-// ];
-
-// navDropdownComponent.dropdownItemsData = navDropdownData;
-
-// const navDropdownBtn = document.querySelector('.nav-dropdown-btn');
-// const navDropdownList = document.querySelector('.nav-dropdown-list');
-// const listItems = document.querySelectorAll('.nav-dropdown-list-item');
-// const caretIcon = document.querySelector('i');
-
-// navDropdownBtn.addEventListener('click', onNavDropdownBtnClick);
-// navDropdownList.addEventListener('click', onNavDropdownListClick);
-// document.addEventListener('click', onDocumentClick)
-
-// let itemPos = -1;
-
-// function onNavDropdownBtnClick() {
-//   const isOpen = navDropdownBtn.classList.contains('open');
-//   // const navDropdownList = document.querySelector('.nav-dropdown-list');
-
-//   if (!isOpen) {
-//     navDropdownBtn.classList.add('open');
-//     caretIcon.classList.replace('fa-caret-down', 'fa-caret-up');
-//     navDropdownList.classList.toggle('closed');
-//   } else {
-//     navDropdownBtn.classList.remove('open');
-//     caretIcon.classList.replace('fa-caret-up', 'fa-caret-down');
-//     navDropdownList.classList.toggle('closed');
-//   }
-// }
-
-// function onNavDropdownListClick(e) {
-//   const targetItem = e.target.closest('.nav-dropdown-list-item');
-//   if (targetItem) {   
-//     const targetdItemPos = parseInt(targetItem.dataset.itemPos);
-//     if (targetdItemPos !== itemPos) {
-//       targetItem.classList.add('selected');
-//       if (itemPos !== -1) {
-//         listItems[itemPos].classList.remove('selected');
-//       }
-//       itemPos = targetdItemPos;
-//     }
-//   }
-// }
-
-// function onDocumentClick(e) {
-//   if (e.target.closest('.nav-dropdown-list') || e.target.closest('.nav-dropdown-btn')) return;
-//   navDropdownList.classList.add('closed');
-//   navDropdownBtn.classList.remove('open');
-//   caretIcon.classList.replace('fa-caret-up', 'fa-caret-down');
-// }

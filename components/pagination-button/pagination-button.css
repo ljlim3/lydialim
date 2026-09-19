@@ -66,12 +66,6 @@ a {
   font-size: 30px;
   transition: transform 0.4s ease-in;
 }
-/* .prev .button-label {
-  margin-left: 2rem;
-}
-.next .button-label {
-  margin-right: 2rem;
-} */
 
 @media (768px <= width <= 996px) {
   .pagination-button {
