@@ -197,7 +197,6 @@ class ProjectComponent extends HTMLElement {
   }
 
   renderProject() {
-    console.log('current Project', this.selectedProject);
     const tagName = this.projectMap[this.selectedProject];
     const projectComponent = document.createElement(tagName);
     const projectContent = this.shadowRoot.getElementById('project-content');

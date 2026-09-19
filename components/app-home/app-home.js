@@ -230,7 +230,6 @@ class AppHomeComponent extends HTMLElement {
   }
 
   handleScrollTo(section) {
-    console.log('section', section);
     gsap.to(window, {
       duration: 2,
       ease: "power2.inOut",
@@ -244,7 +243,6 @@ class AppHomeComponent extends HTMLElement {
             return targetY || window.innerWidth;
             
           case 'projects':
-            console.log('project')
             return 'max';
         }
       }

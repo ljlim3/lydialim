@@ -81,7 +81,6 @@ class PaginationButton extends HTMLElement {
       composed: true
     });
     this.dispatchEvent(paginationEvent);
-    console.log('button clicked and dispatched event')
   }
 
   styleButton() {
@@ -111,7 +110,6 @@ class PaginationButton extends HTMLElement {
 
   addNewUrl() {
     this.paginationButton.href = this._newUrl;
-    console.log('paginationButton', this.paginationButton.href)
   }
 
   addButtonLabel() {

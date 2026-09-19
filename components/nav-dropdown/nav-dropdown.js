@@ -141,7 +141,6 @@ class NavDropdownComponent extends HTMLElement {
 
   setupMutationObserver() {
     const observer = new MutationObserver((mutations) => {
-      console.log(mutations);
       for (let mutation of mutations) {
         if (mutation.attributeName === 'data-close') {       
           this.menuClosed();
